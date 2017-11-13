@@ -3,7 +3,7 @@ var Boom = require("boom");
 var Hoek = require("hoek");
 var _ = require("lodash");
 
-exports.register = function (server, options, next) {
+exports.register = async function (server, options) {
 
   var pluginOptions = {};
   if (options) {
@@ -51,8 +51,6 @@ exports.register = function (server, options, next) {
     }
     return reply.continue();
   })
-
-  next();
 };
 
 exports.extractDefaultLocale = function (allLocales) {
@@ -65,6 +63,4 @@ exports.extractDefaultLocale = function (allLocales) {
   return allLocales[0];
 };
 
-exports.register.attributes = {
-  pkg: require('./package.json')
-};
+exports.pkg = require('./package.json');
